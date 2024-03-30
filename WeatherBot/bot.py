@@ -2,6 +2,7 @@ import asyncio
 from aiogram import Bot, Dispatcher, F
 from aiogram.types import Message
 from aiogram.filters import Command, CommandObject
+from OpenWeatherAPI import get_weather
 import logging
 from os import getenv
 from dotenv import load_dotenv
@@ -17,6 +18,15 @@ dp = Dispatcher()
 async def start(message: Message):
     await message.answer(
         f'Привет, <b>{message.from_user.first_name}!</b>\nЧтобы получить текущую погоду, просто напишите мне название вашего города!')
+
+@dp.message()
+async def weather(message: Message):
+    city = message.text
+    try:
+        await message.answer(get_weather(city))
+    except KeyError:
+        await message.answer('Введите корректное название города!')
+
 
 
 async def main():

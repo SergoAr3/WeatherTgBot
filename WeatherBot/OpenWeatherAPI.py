@@ -15,7 +15,7 @@ def get_weather(city):
     temperature = round(weather_data['main']['temp'])
     temperature_feel = round(weather_data['main']['feels_like'])
     wind_speed = round(weather_data['wind']['speed'])
-    answer = (f'В городе {city}:\n{description.capitalize()}\nТемпература {temperature}°C\n'
+    answer = (f'В городе {city.capitalize()}:\n{description.capitalize()}\nТемпература {temperature}°C\n'
               f'Ощущается как {temperature_feel}°C')
 
     if wind_speed < 5:
@@ -26,3 +26,5 @@ def get_weather(city):
         answer += "\nСильный ветер 💨"
 
     return answer
+
+
