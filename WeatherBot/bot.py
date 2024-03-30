@@ -19,6 +19,7 @@ async def start(message: Message):
     await message.answer(
         f'Привет, <b>{message.from_user.first_name}!</b>\nЧтобы получить текущую погоду, просто напишите мне название вашего города!')
 
+
 @dp.message()
 async def weather(message: Message):
     city = message.text
@@ -26,7 +27,6 @@ async def weather(message: Message):
         await message.answer(get_weather(city))
     except KeyError:
         await message.answer('Введите корректное название города!')
-
 
 
 async def main():
